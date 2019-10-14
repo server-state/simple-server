@@ -1,18 +1,17 @@
 {
-  "name": "@server-state/server-base",
-  "version": "0.1.0",
-  "description": "Server-side (NodeJS based) implementation of the architecture (no modules included)",
-  "main": "index.js",
+  "name": "@server-state/simple-server",
+  "version": "0.0.9",
+  "description": "Providing a template for a full server-state setup including authentication, server-base, client-base and a few modules",
+  "main": "src/index.js",
+  "private": true,
   "scripts": {
-    "test": "jest",
-    "lint": "eslint ./src/ ./tests/",
-    "build": "webpack --config webpack.config.js --mode production"
+    "start": "node ./",
+    "lint": "eslint ./src"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/server-state/server-base.git"
+    "url": "git+https://github.com/server-state/simple-server.git"
   },
-  "types": "index.d.ts",
   "keywords": [
     "nodejs",
     "server",
@@ -29,17 +28,14 @@
   "author": "server-state",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/server-state/server-base/issues"
+    "url": "https://github.com/server-state/simple-server/issues"
   },
-  "homepage": "https://github.com/server-state/server-base#readme",
+  "homepage": "https://github.com/server-state/simple-server#readme",
   "dependencies": {
     "express": "^4.17.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.1",
-    "eslint": "^6.3.0",
-    "jest": "^24.9.0",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "eslint": "^6.3.0"
   }
 }
