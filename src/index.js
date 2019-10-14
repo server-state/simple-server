@@ -13,7 +13,10 @@ const app = express();
 app.use(cors());
 
 // create a new instance of the base server
-const myServer = new baseServer();
+const myServer = new baseServer({
+    logToConsole: true, // Log error messages to console, ...
+    logToFile: false    // ... but not to a file
+});
 
 // add modules to the created server base
 myServer.addModule('raw', raw, ['who', 'pwd', 'uname -a']);
