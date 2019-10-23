@@ -7,6 +7,9 @@ const cors = require('cors');
 // server-state packages
 const baseServer = require('@server-state/server-base');
 const raw = require('@server-state/raw-module');
+const systemd = require('@server-state/systemd-module');
+const si = require('@server-state/system-information-module');
+const diskUsage = require('@server-state/disk-usage-module');
 
 // create new express app and enable CORS (see https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 const app = express();
@@ -21,6 +24,22 @@ const myServer = new baseServer({
 // add modules to the created server base
 myServer.addModule('raw', raw, ['who', 'pwd', 'uname -a']);
 myServer.addModule('raw2', raw, ['ls']);
+myServer.addModule('systemd', systemd, [
+    {
+        name: 'nftables.service'
+    },
+    {
+        name: 'user.slice'
+    },
+    {
+        name: 'network.target'
+    }
+]);
+myServer.addModule('system-info', si, {
+    cpu: [],
+    mem: []
+});
+myServer.addModule('disk-usage', diskUsage, ['/']);
 
 // give server base instance an express app to attach modules
 myServer.init(app);

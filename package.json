@@ -32,8 +32,11 @@
   },
   "homepage": "https://github.com/server-state/simple-server#readme",
   "dependencies": {
+    "@server-state/disk-usage-module": "^0.1.1",
     "@server-state/raw-module": "^0.1.6",
     "@server-state/server-base": "^0.1.0",
+    "@server-state/system-information-module": "^0.1.0",
+    "@server-state/systemd-module": "^0.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1"
   },
