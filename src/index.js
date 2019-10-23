@@ -25,15 +25,9 @@ const myServer = new baseServer({
 myServer.addModule('raw', raw, ['who', 'pwd', 'uname -a']);
 myServer.addModule('raw2', raw, ['ls']);
 myServer.addModule('systemd', systemd, [
-    {
-        name: 'nftables.service'
-    },
-    {
-        name: 'user.slice'
-    },
-    {
-        name: 'network.target'
-    }
+    { name: 'nftables.service' },
+    { name: 'user.slice' },
+    { name: 'network.target' }
 ]);
 myServer.addModule('system-info', si, {
     cpu: [],
