@@ -26,23 +26,95 @@ myServer.addModule('raw', raw, ['who', 'pwd', 'uname -a']);
 myServer.addModule('raw2', raw, ['ls']);
 myServer.addModule('systemd', systemd, [
     { name: 'nftables.service' },
+    { name: 'my-service' },
+    { name: 'boot.mount' },
     { name: 'user.slice' },
-    { name: 'network.target' }
+    { name: 'proc-sys-fs-binfmt_misc.automount' },
+    { name: 'logrotate.timer' },
+    { name: 'dev-disk-by\x2did-dm\x2dname\x2darchGroup\x2dswap.swap' },
+    { name: 'systemd-ask-password-console.path' },
+    { name: 'network.target' },
+    { name: 'dev-archGroup-root.device' },
+    { name: 'init.scope' },
+    { name: 'syslog.socket' }
 ]);
 myServer.addModule('system-info', si, {
     cpu: [],
     mem: []
 });
 myServer.addModule('disk-usage', diskUsage, ['/']);
+myServer.addModule('linux-raid', () => {
+    return ({
+        personalities: [
+            'raid1',
+            'raid0'
+        ],
+        raids: [
+            {
+                name: 'md126',
+                state: 'active',
+                access: 'rw',
+                type: 'raid1',
+                unique: 'myRaid',
+                devices: [
+                    {
+                        name: 'sdb20',
+                        index: 2,
+                        status: 'rescue'
+                    },
+                    {
+                        name: 'sdb2',
+                        index: 1,
+                        status: 'active'
+                    },
+                    {
+                        name: 'sdb1',
+                        index: 0,
+                        status: 'active'
+                    }
+                ],
+                blocks: 20954112,
+                parameters: 'super 1.2',
+                ideal: 2,
+                current: 2,
+                options: [
+                    {
+                        type: 'activity',
+                        activityType: 'recovery',
+                        progress: 74.4,
+                        processed: 15600512,
+                        total: 20954112,
+                        finish: 3.2,
+                        speed: 27496
+                    }
+                ]
+            }
+        ]
+    });
+});
+myServer.addModule('table', () => ({
+    _fields: ['fielda', 'fieldb'],
+    rows: [
+        {
+            fielda: 'Hello world',
+            fieldb: 1
+        },
+        {
+            fielda: 'Test',
+            fieldb: 2
+        }
+    ]
+}));
 
 // give server base instance an express app to attach modules
 myServer.init(app);
 
 // start express app with https
 app.disable('etag');
-https.createServer({ 
+https.createServer({
     key: fs.readFileSync('./key.pem'),   // snake-oil key (NOT for production use!)
     cert: fs.readFileSync('./cert.pem'), // snake-oil certificate (NOT for production use!)
-    passphrase: '12345' }, 
+    passphrase: '12345'
+},
 app).listen(4434);
 
