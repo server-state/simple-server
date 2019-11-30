@@ -1,6 +1,6 @@
 {
   "name": "@server-state/simple-server",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Providing a template for a full server-state setup including authentication, server-base, client-base and a few modules",
   "main": "src/index.js",
   "private": true,
