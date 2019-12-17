@@ -33,7 +33,7 @@
   "homepage": "https://github.com/server-state/simple-server#readme",
   "dependencies": {
     "@server-state/raw-module": "^0.1.8",
-    "@server-state/server-base": "^0.1.2",
+    "@server-state/server-base": "^0.1.3",
     "cors": "^2.8.5",
     "express": "^4.17.1"
   },
