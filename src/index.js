@@ -19,8 +19,8 @@ const myServer = new baseServer({
 });
 
 // add modules to the created server base
-myServer.addModule('raw', raw, ['who', 'pwd', 'uname -a']);
-myServer.addModule('raw2', raw, ['ls']);
+myServer.addModule('raw', raw, [], ['who', 'pwd', 'uname -a']);
+myServer.addModule('raw2', raw, [], ['ls']);
 
 // give server base instance an express app to attach modules
 myServer.init(app);
